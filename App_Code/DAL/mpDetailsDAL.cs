@@ -6,6 +6,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 
+/// <summary>
+/// Author:		<Ajay Singh, Kamal pathak >
+/// Email :      <meajaysingh@hotmail.com>
+/// Create date: <Create Date,5/10/2013> 
+/// </summary>
+
 public class mpDetailsDAL
 {
     SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["rateMyMPConnectionString"].ConnectionString);

@@ -9,9 +9,14 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-/// <summary>
 
+/// <summary>
+/// Author:		<Ajay Singh >
+/// Email :      <meajaysingh@hotmail.com>
+/// Create date: <Create Date,5/10/2013> 
 /// </summary>
+
+
 public class ConstituencyBAL
 {
     private ConstituencyDAL ob = new ConstituencyDAL();

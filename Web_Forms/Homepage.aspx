@@ -196,6 +196,7 @@
                             <Triggers>
                                 <asp:AsyncPostBackTrigger EventName="Click" ControlID="LBsupport" />
                                 <asp:AsyncPostBackTrigger EventName="Click" ControlID="LBdeny" />
+                                <asp:AsyncPostBackTrigger EventName="Click" ControlID="btnPost" />
                             </Triggers>
                         </asp:UpdatePanel>
                             <div class="bound2">

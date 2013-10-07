@@ -4,6 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Data;
 
+/// <summary>
+/// Author:		<Ajay Singh,Kamal Pathak >
+/// Email :      <meajaysingh@hotmail.com>
+/// Create date: <Create Date,5/10/2013> 
+/// </summary>
 
 public class mpDetailsBAL
 {

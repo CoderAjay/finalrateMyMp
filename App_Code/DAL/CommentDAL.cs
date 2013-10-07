@@ -7,8 +7,11 @@ using System.Configuration;
 using System.Data.SqlClient;
 
 /// <summary>
-/// Summary description for CommentDAL
+/// Author:		<Ajay Singh >
+/// Email :      <meajaysingh@hotmail.com>
+/// Create date: <Create Date,5/10/2013> 
 /// </summary>
+
 public class CommentDAL
 {
     SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["rateMyMPConnectionString"].ConnectionString);

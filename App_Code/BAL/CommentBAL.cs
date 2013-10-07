@@ -5,8 +5,12 @@ using System.Web;
 using System.Data;
 
 /// <summary>
-/// Summary description for CommentBAL
+/// Author:		<Ajay Singh >
+/// Email :      <meajaysingh@hotmail.com>
+/// Create date: <Create Date,5/10/2013> 
 /// </summary>
+
+
 public class CommentBAL
 {
     private CommentDAL commentdal = new CommentDAL();

@@ -1,0 +1,144 @@
+/* CSS Layout and Sizing*/
+
+body
+{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:80%;
+}
+.bgcolor-navyblue
+{
+	background:rgba(32,38,64,1);
+}
+.color-white
+{
+	color:#FFF;
+}
+.transition
+{
+	transition:background ease-in 0.3s;
+}	
+.padding-left50
+{
+	padding-left:40px;
+}
+.padding-right50
+{
+	padding-right:40px;
+}
+.padding-left68
+{
+	padding-left:68px;
+}
+.padding-right68
+{
+	padding-right:68px;
+}
+.padding-left78
+{
+	padding-left:78px;
+}
+.padding-right78
+{
+	padding-right:78px;
+}
+.padding-left100
+{
+	padding-left:135px;
+}
+.padding-right100
+{
+	padding-right:135px;
+}
+.padding0
+{
+	padding:0px;
+}
+.padding-top15
+{
+	padding-top:15px;
+}
+.padding-top20
+{
+	padding-top:20px;
+}
+.padding-top50
+{
+	padding-top:50px;
+}
+.padding-bottom20
+{
+	padding-bottom:20px;
+}
+.padding-top40
+{
+	padding-top:40px;
+}
+.padding-bottom60
+{
+	padding-bottom:60px;
+}
+.mg-top10
+{
+	margin-top:10px;
+}
+.mg-top15
+{
+	margin-top:15px;
+}
+.mg-top40
+{
+	margin-top:40px;
+}
+.mg-top50
+{
+	margin-top:50px;
+}
+.mg-bottom40
+{
+	margin-bottom:40px;
+}
+.mg-right10
+{
+	margin-right:10px;
+}
+.mg-right40
+{
+	margin-right:40px;
+}
+.mg-right58
+{
+	margin-right:58px;
+}
+.mg-right90
+{
+	margin-right:95px;
+}
+.mg-left10
+{
+	margin-left:20px;
+}
+.mg-left100
+{
+	margin-left:100px;
+}
+.bottom-border-none
+{
+	border-bottom:none;
+}
+
+.inner
+{
+	width:300px;
+}
+.slowtrasition
+{
+	transition:background ease 2s;
+}
+#signinEmailValidation
+{
+
+}
+#signinPasswordValidation
+{
+
+}

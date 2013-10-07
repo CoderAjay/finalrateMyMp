@@ -1,0 +1,135 @@
+﻿*
+{
+    margin:0px;
+    padding:0px;
+}
+#container {
+    float:left;
+    width:100%;
+}
+
+#header {
+    /*background-image:url("../Images/bg.gif");*/
+    background-color:#1de2ff;
+    border-top:2px solid #000000;
+    border-bottom:2px solid #000000;
+    color:#ffffff;
+    height: 90px;
+    width:100%;
+    float:left;
+}
+
+#header-left {
+    text-align:center;
+    width: 20%;
+    height: 90px;
+    font-family:'MS Gothic';
+    font-size:42px;
+    float:left;
+    color:#000000;
+}
+
+#header-right {
+    text-align:center;
+    width: 500px;
+    height: 90px;
+    font-family:'MS Gothic';
+    font-size:36px;
+    float:right;
+    color:#000000;
+}
+#main {
+    height:auto;
+    width:100%;
+    float: left;
+}
+
+#sidebar {
+    /*background-image:url("../Images/bg.gif");*/
+    padding-top:18px;
+    padding-bottom:18px;
+    background-color:#ffffff;
+    height:auto;
+    width: 20%;
+  float:left;
+}
+#content-main {
+    width:79%;
+	height:auto;
+	margin-top:13px;
+	margin-left:10px;
+	float:left;
+	
+    /*overflow-y:scroll; */
+}
+
+#content-body {  
+    height:auto;
+    width: 100%;
+	float:left;
+	
+}
+#content
+{height:auto;
+ margin-left:20px;
+ float:left;
+
+}
+a 
+{
+	color:#000000;
+text-decoration:none;
+	
+}
+
+#footer {
+    background-color:#1de2ff;
+    border-top:2px solid #000000;
+    border-bottom:2px solid #000000;
+    height: 50px;
+    width: 100%;
+    float: left;
+
+}
+#social {
+    height: 50px;
+    width: 150px;
+    float: right;
+    margin-right:50px;
+}
+.icon {
+    float:left;
+    height: 50px;
+    width: 50px;
+}
+
+.buttons {
+    /*background-image:url("../Images/bt-bg.jpg");*/
+    background-color:#ffffff;
+    margin-bottom:3px;
+    margin-top:3px;
+    margin-left:4px;
+    margin-right:2px;
+    color:#000000;
+    cursor:pointer;
+    font-family:'Lucida Console';
+    font-size:16px;
+    border-width:2px;
+    border-style:solid;
+    border-color:#000000;
+    text-align:center;
+    height: 55px;
+    width:95%;
+}
+.buttons:hover {
+    background-color:#1de2ff;
+    color: #ffffff;
+    box-shadow:#000000 2px 2px;
+}
+.buttons:active {
+    position:relative;
+	top:2px;
+}
+   
+
+

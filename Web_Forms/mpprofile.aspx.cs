@@ -6,6 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 
+
+/// <summary>
+/// Author:		<Ajay Singh >
+/// Email :      <meajaysingh@hotmail.com>
+/// Create date: <Create Date,5/10/2013> 
+/// Authentication Part Done By : <Kamal Pathak>
+/// </summary>
+
 public partial class mpprofile : System.Web.UI.Page
 {
 

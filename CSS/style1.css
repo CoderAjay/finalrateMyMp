@@ -1,9 +1,15 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 /* CSS Document */
 *
 {
 	margin:0;
 	padding:0;
+	
+
+}
+.formtag
+{
+	margin:0px;
 }
 a,img
 {
@@ -43,7 +49,8 @@ body
 	width:28%;
 	padding:3px 10px 3px 10px;
 	min-height:670px;
-	position:fixed;
+	position:relative;
+	border-right:2px solid #CCC;
 }
 .logo
 {
@@ -94,7 +101,7 @@ text-shadow: 0px 0px 1px #003;
 {
 	float:left;
 	width:100%;
-	position:absolute;
+	position:relative;
 	bottom:0px;
 }
 .nav_inner
@@ -124,13 +131,11 @@ text-shadow: 0px 0px 1px #003;
 /*main right start */
 #main_right
 {
-    float: right;
-    position: relative;
-    width: 68%;
-    padding: 10px;
-    min-height: 670px;
-    border-left: 1px solid #CCC;
-    right: 0;
+	float:left;
+	width:68%;
+	padding:10px;
+	min-height:670px;
+	
 }
 #home_container
 {
@@ -138,9 +143,9 @@ text-shadow: 0px 0px 1px #003;
 	width:100%;
 	min-height:140px;
 	
-	border-bottom:1px solid#CCC;
+	border-bottom:2px solid#CCC;
 	
-}
+	}
 .user_outr
 {
 	float: left;
@@ -158,6 +163,11 @@ text-shadow: 0px 0px 1px #003;
 {
 	padding:2px 12px;
 	margin-left:10px;
+}
+.btn btn_home
+{ 
+float:right;
+
 }
 .issue_links
 { 
@@ -189,9 +199,11 @@ text-shadow: 0px 0px 1px #003;
 .random_issue
 {	
     float: left;
+	margin-top: 30px;
+	height: 212px;
 	width: 98%;
+	background-color: #F0F0F0;
 	margin-left: 10px;
-    margin-top:35px;
 }
 .inner_div
 {
@@ -217,8 +229,6 @@ text-shadow: 0px 0px 1px #003;
 {
 	float:left;
 	width:100%;
-    background:#f0f0f0;
-    border:1px solid #ccc;
 }
 .home_left_pic
 {
@@ -242,15 +252,13 @@ text-shadow: 0px 0px 1px #003;
 	
 	margin-left: 7px;
 	padding: 10px;
-    margin-top: 2px;
-    padding-left: 5px;
+	margin-top: 2px;
 		
 }
 .home_right_top
 {
 	float:left;
 	width:100%;
-    padding:5px;
 	background-color: #fff;
 }
 .home_right_top label
@@ -272,12 +280,13 @@ text-shadow: 0px 0px 1px #003;
 }
 .issue_outr
 {
-    float: left;
-    width: 95%;
-    padding: 11px;
-    margin-top: 15px;
-    margin-left: 10px;
-    background-color: #fff;
+	float: left;
+	width: 97%;
+	padding: 12px;
+	margin-top: 15px;
+	background-color: #fff;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
 }
 .issue_outr p
 {
@@ -295,14 +304,14 @@ text-shadow: 0px 0px 1px #003;
 {
 	width: 86%;
 	float: left;
-    margin-top:5px;
+	margin-bottom:12px;
 	
 }
 
 .bound1
 {
 	float:left;
-	width:29%;
+	width:33%;
 }
 .bound1 i
 {
@@ -336,6 +345,8 @@ text-shadow: 0px 0px 1px #003;
 {
 	float: right;
 	width: 88%;
+	min-height: 20px;
+	border: 1px solid #f2f2f2;
 	margin-top: 18px;
 	margin-right: 40px;
 }
@@ -344,7 +355,7 @@ text-shadow: 0px 0px 1px #003;
 	float: left;
 	width: 98%;
 	padding: 5px;
-    border: 1px solid #f2f2f2;
+
 }
 .img_outer 
 {
@@ -352,11 +363,6 @@ text-shadow: 0px 0px 1px #003;
 	width: 44px;
 	height: 44px;
 	background: #ccc;
-}
-.img_outer img 
-{
-    width:44px;
-    height:44px;
 }
 .comm_section
  {
@@ -391,14 +397,14 @@ text-shadow: 0px 0px 1px #003;
 .sub_icons
 {
 	float: left;
-	width:91%;
+	width: 100%;
 	margin-top: 4px;
 	margin-left: 48px;
 }
 .text_comment
 {
 	float:left;
-	width:40%;
+	width:30%;
 	margin-left: 49px;
 
 }
@@ -576,13 +582,31 @@ text-shadow: 0px 0px 1px #003;
 /*Usercomment page start 4oct*/
 .text_editor_outr
 {
-	float:left;
-	width:100%;
+	float: left;
+	width: 75%;
+	height:162px;
 }
 
+.attach_file 
+{
+	float: left;
+	width: 41%;
+	margin-bottom: 10px;
+	}
 
-
-
+#Button3 
+{
+	padding:2px;
+	width:64px;
+	
+}
+#Button4
+{
+	padding:2px ;
+	margin-left:4px;
+	width:84px;
+	
+}
 
 
 

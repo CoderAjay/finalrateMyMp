@@ -14,8 +14,6 @@
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
 <link type="text/css" rel="stylesheet" href="../css/jquery-te-1.4.0.css"/>
 <link rel="stylesheet" type="text/css" href="../css/style1.css" />
-
-
 <script type="text/javascript" src="../js/jquery.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="../js/jquery-te-1.4.0.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>

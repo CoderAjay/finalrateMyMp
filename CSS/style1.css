@@ -1,15 +1,9 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 *
 {
 	margin:0;
 	padding:0;
-	
-
-}
-.formtag
-{
-	margin:0px;
 }
 a,img
 {
@@ -49,8 +43,7 @@ body
 	width:28%;
 	padding:3px 10px 3px 10px;
 	min-height:670px;
-	position:relative;
-	border-right:2px solid #CCC;
+	position:fixed;
 }
 .logo
 {
@@ -101,7 +94,7 @@ text-shadow: 0px 0px 1px #003;
 {
 	float:left;
 	width:100%;
-	position:relative;
+	position:absolute;
 	bottom:0px;
 }
 .nav_inner
@@ -131,11 +124,13 @@ text-shadow: 0px 0px 1px #003;
 /*main right start */
 #main_right
 {
-	float:left;
-	width:68%;
-	padding:10px;
-	min-height:670px;
-	
+    float: right;
+    position: relative;
+    width: 68%;
+    padding: 10px;
+    min-height: 670px;
+    border-left: 1px solid #CCC;
+    right: 0;
 }
 #home_container
 {
@@ -143,9 +138,9 @@ text-shadow: 0px 0px 1px #003;
 	width:100%;
 	min-height:140px;
 	
-	border-bottom:2px solid#CCC;
+	border-bottom:1px solid#CCC;
 	
-	}
+}
 .user_outr
 {
 	float: left;
@@ -163,11 +158,6 @@ text-shadow: 0px 0px 1px #003;
 {
 	padding:2px 12px;
 	margin-left:10px;
-}
-.btn btn_home
-{ 
-float:right;
-
 }
 .issue_links
 { 
@@ -199,11 +189,9 @@ float:right;
 .random_issue
 {	
     float: left;
-	margin-top: 30px;
-	height: 212px;
 	width: 98%;
-	background-color: #F0F0F0;
 	margin-left: 10px;
+    margin-top:35px;
 }
 .inner_div
 {
@@ -229,6 +217,8 @@ float:right;
 {
 	float:left;
 	width:100%;
+    background:#f0f0f0;
+    border:1px solid #ccc;
 }
 .home_left_pic
 {
@@ -252,13 +242,15 @@ float:right;
 	
 	margin-left: 7px;
 	padding: 10px;
-	margin-top: 2px;
+    margin-top: 2px;
+    padding-left: 5px;
 		
 }
 .home_right_top
 {
 	float:left;
 	width:100%;
+    padding:5px;
 	background-color: #fff;
 }
 .home_right_top label
@@ -280,13 +272,12 @@ float:right;
 }
 .issue_outr
 {
-	float: left;
-	width: 97%;
-	padding: 12px;
-	margin-top: 15px;
-	background-color: #fff;
-	border-left: 1px solid #CCC;
-	border-right: 1px solid #CCC;
+    float: left;
+    width: 95%;
+    padding: 11px;
+    margin-top: 15px;
+    margin-left: 10px;
+    background-color: #fff;
 }
 .issue_outr p
 {
@@ -304,14 +295,14 @@ float:right;
 {
 	width: 86%;
 	float: left;
-	margin-bottom:12px;
+    margin-top:5px;
 	
 }
 
 .bound1
 {
 	float:left;
-	width:33%;
+	width:29%;
 }
 .bound1 i
 {
@@ -345,8 +336,6 @@ float:right;
 {
 	float: right;
 	width: 88%;
-	min-height: 20px;
-	border: 1px solid #f2f2f2;
 	margin-top: 18px;
 	margin-right: 40px;
 }
@@ -355,7 +344,7 @@ float:right;
 	float: left;
 	width: 98%;
 	padding: 5px;
-
+    border: 1px solid #f2f2f2;
 }
 .img_outer 
 {
@@ -363,6 +352,11 @@ float:right;
 	width: 44px;
 	height: 44px;
 	background: #ccc;
+}
+.img_outer img 
+{
+    width:44px;
+    height:44px;
 }
 .comm_section
  {
@@ -397,14 +391,14 @@ float:right;
 .sub_icons
 {
 	float: left;
-	width: 100%;
+	width:91%;
 	margin-top: 4px;
 	margin-left: 48px;
 }
 .text_comment
 {
 	float:left;
-	width:30%;
+	width:40%;
 	margin-left: 49px;
 
 }
@@ -582,31 +576,13 @@ float:right;
 /*Usercomment page start 4oct*/
 .text_editor_outr
 {
-	float: left;
-	width: 75%;
-	height:162px;
+	float:left;
+	width:100%;
 }
 
-.attach_file 
-{
-	float: left;
-	width: 41%;
-	margin-bottom: 10px;
-	}
 
-#Button3 
-{
-	padding:2px;
-	width:64px;
-	
-}
-#Button4
-{
-	padding:2px ;
-	margin-left:4px;
-	width:84px;
-	
-}
+
+
 
 
 

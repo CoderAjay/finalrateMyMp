@@ -149,6 +149,7 @@ public partial class Homepage : System.Web.UI.Page
         {
             Int16 stateId = Convert.ToInt16(DDListState.SelectedValue);
             DDListConstituency.Items.Clear();
+            DDListConstituency.AppendDataBoundItems = true;
             DDListConstituency.Items.Add("Constituency");
             DDListConstituency.DataSource = (DataTable)constituency.getData(stateId);
             DDListConstituency.DataTextField = "constituency";
@@ -169,7 +170,7 @@ public partial class Homepage : System.Web.UI.Page
     {
 
         Int16 constituencyId = Convert.ToInt16(DDListConstituency.SelectedValue);
-        HFconstituencyId.Value = constituencyId.ToString();
+        HFconstituencyId.Value = "1";// constituencyId.ToString();
         Server.Transfer("usercomment.aspx", true);
 
     }

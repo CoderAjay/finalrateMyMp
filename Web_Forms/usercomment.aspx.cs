@@ -13,6 +13,7 @@ public partial class Web_Forms_usercomment : System.Web.UI.Page
     private LikeDislikeBAL likedislikebal = new LikeDislikeBAL();
     private CommentBAL commentbal = new CommentBAL();
 
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -220,5 +221,21 @@ public partial class Web_Forms_usercomment : System.Web.UI.Page
         {
         }
 
+    }
+    protected void BTNissuePost_Click(object sender, EventArgs e)
+    {
+        issuesBO issuebo = new issuesBO();
+        String fileName;
+        if (FileUploadIssue.HasFile)
+        {
+            fileName = Server.MapPath("~/image/") + FileUploadIssue.FileName;
+            FileUploadIssue.SaveAs(fileName);
+        }
+        issuebo.guid = 1; /** from session **/
+        issuebo.mpId = 3;
+        issuebo.issueText = TXTissue.Text;
+        TXTissue.Text = "";
+        issuesbal.postIssue(issuebo);
+        //loadlist(50, 0);
     }
 }

@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.css" />
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="../css/jquery-te-1.4.0.css">
+<link type="text/css" rel="stylesheet" href="../css/jquery-te-1.4.0.css"/>
 <link rel="stylesheet" type="text/css" href="../css/style1.css" />
 
 
@@ -87,14 +88,21 @@
                 	<input type="button" class="btn btn_home" value="Home" />
                     <input type="button" class="btn btn_home" value="Logout" />
                 </div>
+                <asp:UpdatePanel runat="server" UpdateMode="Conditional"><ContentTemplate>
                 <div class="text_editor_outr">
                     
-                	<textarea name="textarea" class="jqte-test"><b>My contents are from <u><span style="color:rgb(0, 148, 133);">TEXTAREA</span></u></b></textarea>  
+                	<%--<textarea name="textarea" class="jqte-test"><b>My contents are from <u><span style="color:rgb(0, 148, 133);">TEXTAREA</span></u></b></textarea>--%>
+                    <asp:TextBox ID="TXTissue" runat="server" CssClass="jqte-test" TextMode="MultiLine"/>
                 </div>
                        <div class="attach_file">
-                    <asp:Button ID="Button3" runat="server" Text="Post" />
-                    <asp:Button ID="Button4" runat="server" Text="Attach File" />
+                    <asp:Button ID="BTNissuePost" runat="server" Text="Post" OnClick="BTNissuePost_Click" />
+                    <asp:FileUpload ID="FileUploadIssue" runat="server" Enabled="false"  />
                 </div>               
+               </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="BTNissuePost" EventName="Click" />
+                    </Triggers>
+                </asp:UpdatePanel>
               </div>
                
                  <%-- Issues start--%>

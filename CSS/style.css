@@ -1,144 +1,624 @@
-/* CSS Layout and Sizing*/
+@charset "utf-8";
+/* CSS Document */
+*
+{
+	margin:0;
+	padding:0;
+	
 
+}
+.formtag
+{
+	margin:0px;
+}
+a,img
+{
+	border:none;
+	outline:none;
+}
+ul,li
+{
+	list-style:none;
+}
+input,textarea,select
+{
+	outline:none;
+}
 body
 {
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:80%;
+	font-size:12px;
+	color:#333;
+	background-color:#fff;
 }
-.bgcolor-navyblue
+/*Layout start*/
+#main
 {
-	background:rgba(32,38,64,1);
+	float:left;
+	width:100%;
 }
-.color-white
+#main_container
 {
-	color:#FFF;
+	width:100%;
+	float:left;
 }
-.transition
+/*main left start */
+#main_left
 {
-	transition:background ease-in 0.3s;
-}	
-.padding-left50
-{
-	padding-left:40px;
+	float:left;
+	width:28%;
+	padding:3px 10px 3px 10px;
+	min-height:670px;
+	position:relative;
+	border-right:2px solid #CCC;
 }
-.padding-right50
+.logo
 {
-	padding-right:40px;
+	float:left;
+	width:100%;
+	text-align:center;
+	border-bottom:2px solid #CCC;
 }
-.padding-left68
+.search_bar
 {
-	padding-left:68px;
+	margin:0 auto;
+	width:80%;
 }
-.padding-right68
+.search_bar h3
 {
-	padding-right:68px;
+	float:left;
+	width:100%;
+	text-align:center;
+	margin-top:30px;
+	margin-bottom:25px;
+	color:#003;
+	font-weight: normal;
+text-shadow: 0px 0px 1px #003;
 }
-.padding-left78
+.select_outr
 {
-	padding-left:78px;
+	float:left;
+	width:100%;
+	text-align:center;
+	margin-bottom:25px;
 }
-.padding-right78
+.member_select
 {
-	padding-right:78px;
+	width:70%;
+	margin:0px;
 }
-.padding-left100
+.search_button
 {
-	padding-left:135px;
+	float: left;
+	width: 100%;
+	text-align: center;	
 }
-.padding-right100
+.btn
 {
-	padding-right:135px;
+	padding:5px 20px;
 }
-.padding0
+.main_left_links
 {
-	padding:0px;
+	float:left;
+	width:100%;
+	position:relative;
+	bottom:0px;
 }
-.padding-top15
+.nav_inner
 {
-	padding-top:15px;
+	float:left;
+	margin-left:10px;
 }
-.padding-top20
+.nav_inner li
 {
-	padding-top:20px;
+	float:left;
+	width:100%;
 }
-.padding-top50
+.nav_inner li a
 {
-	padding-top:50px;
+	width:auto;
+	font-size:14px;
+	font-weight:normal;
+	color:#888;
 }
-.padding-bottom20
+.nav_inner li a:hover
 {
-	padding-bottom:20px;
+	color:#333;
 }
-.padding-top40
+
+
+/*main left end */
+/*main right start */
+#main_right
 {
-	padding-top:40px;
+	float:left;
+	width:68%;
+	padding:10px;
+	min-height:670px;
+	
 }
-.padding-bottom60
+#home_container
 {
-	padding-bottom:60px;
+	float:left;
+	width:100%;
+	min-height:140px;
+	
+	border-bottom:2px solid#CCC;
+	
+	}
+.user_outr
+{
+	float: left;
+	width: auto;
+	font-weight: bold;
+	padding: 4px;
+	color: #999;
 }
-.mg-top10
+.home_right
 {
+	float:right;
+	width:auto;
+}
+.btn_home
+{
+	padding:2px 12px;
+	margin-left:10px;
+}
+.btn btn_home
+{ 
+float:right;
+
+}
+.issue_links
+{ 
+	width: 75%;
+	height: 50px;
+	float: left;
+	font-size: 21px;
+	margin-left: 15%;
+	
+}
+.search_box
+{
+	float:left;
+	width:91%;
+	position:relative;
+	text-align:center;
+}
+.search_box .seach_box_inner
+{
+	padding-right:30px;
+	width:38%;
+}
+.search_icon
+{
+	position: absolute;
+	left: 69%;
+	top: 22%;
+}
+.random_issue
+{	
+    float: left;
+	margin-top: 30px;
+	height: 212px;
+	width: 98%;
+	background-color: #F0F0F0;
+	margin-left: 10px;
+}
+.inner_div
+{
+	float:left;
+	width:100%;
+	background-color:#DDD;
+	height:80px;
+}
+
+.vote_label
+{
+	float:left;
+	width:70%;
+	background-color:#EEE;
+	height:70px;
+	margin-left:7px;
+	margin-top:3px;
+}
+
+
+/*Css of layout */
+.home_issue_outr
+{
+	float:left;
+	width:100%;
+}
+.home_left_pic
+{
+	float:left;
+	width:82px;
+}
+.home_left_pic img
+{
+	height:65px;
+	width:70px;
+	background-color:#777;
+	float:left;
+	padding:3px;
+	margin-top:3px;
+	margin-left:3px;
+}
+.home_right_detail
+{
+	float: left;
+	width: 87%;
+	
+	margin-left: 7px;
+	padding: 10px;
+	margin-top: 2px;
+		
+}
+.home_right_top
+{
+	float:left;
+	width:100%;
+	background-color: #fff;
+}
+.home_right_top label
+{
+	float:left;
+	width:auto;
+	margin-right:5px;
+	color:#444;
+}
+.date_time
+{
+	float:right !important;
+}
+.home_right_top p
+{
+	float:left;
+	width:auto;
+	margin-right:5px;
+}
+.issue_outr
+{
+	float: left;
+	width: 97%;
+	padding: 12px;
+	margin-top: 15px;
+	background-color: #fff;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+}
+.issue_outr p
+{
+	float:left;
+	width:100%;
+}
+.comment_outr
+{
+	float:left;
+	width:98%;
+	padding:10px;
+}
+
+.likebutton
+{
+	width: 86%;
+	float: left;
+	margin-bottom:12px;
+	
+}
+
+.bound1
+{
+	float:left;
+	width:33%;
+}
+.bound1 i
+{
+	float: left;
+	margin-right: 5px;
+	margin-top: 2px;
+	margin-left:12px;
+}
+
+.bound1 label
+{
+	float:left;
+	width:auto;
+	font-size:12px;
+	margin-right:5px;
+}
+.bound1 a
+{
+	float:left;
+	width:auto;
+	margin-right:5px;
+}
+
+.bound2
+{
+	float:left;
+	width:10%;
+}
+
+.comment_cont
+{
+	float: right;
+	width: 88%;
+	min-height: 20px;
+	border: 1px solid #f2f2f2;
+	margin-top: 18px;
+	margin-right: 40px;
+}
+.user_outer
+{
+	float: left;
+	width: 98%;
+	padding: 5px;
+
+}
+.img_outer 
+{
+	 float: left;
+	width: 44px;
+	height: 44px;
+	background: #ccc;
+}
+.comm_section
+ {
+	float: left;
+	margin-left: 5px;
+	width: 90%;
+	background: #f2f2f2;
+	min-height: 37px;
+	padding: 5px;
+	word-wrap: break-word;
+}
+.name_label
+{
+	width:60%;
+	float:left;
+	
+}
+.date_label
+{
+	width: auto;
+	float: right;
+	padding-right:5px;
+	
+}
+.comment_label
+{
+	width:100%;
+	float:left;
 	margin-top:10px;
+	
 }
-.mg-top15
+.sub_icons
 {
-	margin-top:15px;
+	float: left;
+	width: 100%;
+	margin-top: 4px;
+	margin-left: 48px;
 }
-.mg-top40
+.text_comment
 {
-	margin-top:40px;
-}
-.mg-top50
-{
-	margin-top:50px;
-}
-.mg-bottom40
-{
-	margin-bottom:40px;
-}
-.mg-right10
-{
-	margin-right:10px;
-}
-.mg-right40
-{
-	margin-right:40px;
-}
-.mg-right58
-{
-	margin-right:58px;
-}
-.mg-right90
-{
-	margin-right:95px;
-}
-.mg-left10
-{
-	margin-left:20px;
-}
-.mg-left100
-{
-	margin-left:100px;
-}
-.bottom-border-none
-{
-	border-bottom:none;
-}
-
-.inner
-{
-	width:300px;
-}
-.slowtrasition
-{
-	transition:background ease 2s;
-}
-#signinEmailValidation
-{
+	float:left;
+	width:30%;
+	margin-left: 49px;
 
 }
-#signinPasswordValidation
+.post_button
 {
-
+	float:left;
+	width:20%;
+	
 }
+.text_comment TextBox1
+{
+	float: left;
+	width: 28%;
+}
+.post_button button
+{
+	float: left;
+}
+.post_button 
+{
+	float: left;
+	width: 40px;
+	height: 30px;
+	margin-left: 7px;
+}
+/*.input_text
+ {
+	float:left;
+    width:78%; 
+    height:30px;
+	 padding:2px;
+	 border :1px solid #ccc;
+ }
+  */
+/*MP Profile page start 3oct*/
+.heading 
+{
+	height: 60px;
+	width: 100%;
+	float:left;
+	text-align: center;
+	font-weight: normal;
+	margin-bottom: 19px;
+}
+.heading h5 
+{
+	float: left;
+	width: 100%;
+	font-weight: normal;
+	font-size: 18px;
+}
+
+.mp_info
+{
+	height: 500px;
+	width: 100%;
+	float: left;
+	margin-top: 1px;
+}
+.mp_info_inner
+{
+	
+	float:left;
+	height:130px;
+	width:100%;
+	
+}
+.mp_img
+{
+	float:left;
+	
+	height:125px;
+	width:33%;
+	padding:2px;
+}
+
+.mp_img img
+{
+	height: 120px;
+	width: 119px;
+    float: left;
+	padding: 2px;
+	margin-top: 1px;
+	margin-left: 1px;
+}
+.up_labels
+{
+	
+	height: 120px;
+	width: 65%;
+	float: left;
+	margin-top: 5px;
+}
+.name1
+	{
+    float:left;
+	width:98%;
+	}
+.name1
+	{
+		 float:left;
+	width:98%;
+	}
+.up_labels h5
+{
+	float:left;
+	width:51%;
+	margin-left: 12px;
+	font-weight: normal;
+}
+.up_labels label
+{
+	float:left;
+	margin-top:10px;
+	width:30%;
+	
+}
+.down_labels
+{
+	float: left;
+	height: 285px;
+	width: 100%;
+	margin-top:12px;
+}
+.down_labels h5
+{
+	float:left;
+	width:51%;
+	margin-left: 12px;
+	font-weight: normal;
+}
+.down_labels label
+{
+	float:left;
+	margin-top:10px;
+	width:30%;
+	
+}
+.solve_issue_container
+{
+	float: left;
+	height: 40px;
+	width: 71%;
+	margin-top: 74px;
+	margin-left: 40px;
+}
+.issue_constituency
+{
+	float: left;
+	width: auto;
+	margin-right: 15px;
+}
+.issue_constituency .num1
+{
+	font-size: 35px;
+	font-weight: bold;
+	float: left;
+	width: auto;
+	margin-left: 5px;
+}
+
+.issue_constituency h4
+{
+	width: auto;
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	margin: 0;
+	margin-top: 5px;
+}
+
+
+
+/*MP Profile page start 3oct*/
+/*Usercomment page start 4oct*/
+.text_editor_outr
+{
+	float: left;
+	width: 75%;
+	height:162px;
+}
+
+.attach_file 
+{
+	float: left;
+	width: 41%;
+	margin-bottom: 10px;
+	}
+
+#Button3 
+{
+	padding:2px;
+	width:64px;
+	
+}
+#Button4
+{
+	padding:2px ;
+	margin-left:4px;
+	width:84px;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*main right end */

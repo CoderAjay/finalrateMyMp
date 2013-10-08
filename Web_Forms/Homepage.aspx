@@ -148,9 +148,9 @@
                 	</div>
                     <div class="search_box">
                         <asp:LinkButton ID="LBsearch" runat="server" class="icon-search search_icon"/>
-                        <asp:TextBox ID="txtsearchBox" class="search-query seach_box_inner" runat="server"/>
-                        <asp:TextBoxWatermarkExtender runat="server" TargetControlID="txtsearchBox" WatermarkText="Search for Member, Constituency or state" 
-                           />
+                        <asp:TextBox ID="txtsearchBox" class="search-query seach_box_inner" runat="server" PlaceHolder="Search for Member, Constituency or state"/>
+                        <%--<asp:TextBoxWatermarkExtender runat="server" TargetControlID="txtsearchBox" WatermarkText="Search for Member, Constituency or state" 
+                           />--%>
                     </div>
             </div>
               
@@ -242,8 +242,8 @@
                    </ItemTemplate></asp:Repeater> 
                     
                     <div class="text_comment">
-                            <asp:TextBox ID="txtcomment" runat="server" TextMode="MultiLine" style="width:95%" />
-                             <asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender1" runat="server" TargetControlID="txtComment" WatermarkText="Puts Your Comments"/>
+                            <asp:TextBox ID="txtcomment" runat="server" TextMode="MultiLine" style="width:95%" placeholder="Puts Your Comments" />
+                             <%--<asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender1" runat="server" TargetControlID="txtComment" WatermarkText="Puts Your Comments"/>--%>
                         </div>
                        <div class="post_button">
                            <asp:Button ID="btnPost" runat="server" Text="Post" CommandName="post" style=" padding:  3px 15px 3px 15px;" />

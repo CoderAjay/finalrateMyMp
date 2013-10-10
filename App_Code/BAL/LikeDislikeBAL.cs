@@ -5,12 +5,8 @@ using System.Web;
 
 
 /// <summary>
-/// Author:		<Ajay Singh >
-/// Email :      <meajaysingh@hotmail.com>
-/// Create date: <Create Date,5/10/2013> 
+/// Summary description for LikeDislikeBAL
 /// </summary>
-
-
 public class LikeDislikeBAL
 {
     LikeDislikeDAL likedislikedal = new LikeDislikeDAL();

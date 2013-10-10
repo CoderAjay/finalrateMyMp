@@ -36,7 +36,7 @@ public partial class _Default : System.Web.UI.Page
     {
         if (Page.IsValid)
         {
-            string[] userdetails = new string[2];
+            string[] userdetails = new string[3];
 
             // here we will check user and  if user exist we will create session and then redirect to next page.
             userMasterBO.email = signinemail.Text;
@@ -47,7 +47,7 @@ public partial class _Default : System.Web.UI.Page
             }
             else
             {
-                userdetails = (userMasterBAL.checkUser(userMasterBO)); // if user is valid then it return the user information  email and guid
+                userdetails = (userMasterBAL.checkUser(userMasterBO)); // if user is valid then it return the user information  email,firstname and guid
                 if (userdetails[0] != "")
                 {
                     //here we will maintain cookies for remember me option
@@ -71,6 +71,7 @@ public partial class _Default : System.Web.UI.Page
                     //here we will maintain the session and then transfer to the second page.
                     Session["userEmail"] = userdetails[0];
                     Session["guid"] = userdetails[1]; //unique id for each user.
+                    Session["fName"] = userdetails[2];
                     Session["socialType"] = "local";
                     Session["socialOrNot"] = 0; //HERE 0 MEANS LOCAL USER.
                     ClientScript.RegisterStartupScript(this.GetType(), "myfunction", "rightCredential()", true);
@@ -103,7 +104,7 @@ public partial class _Default : System.Web.UI.Page
                     //here we will add first name and last name and put into username.
                     fname = firstName.Text;
                     lname = lastName.Text;
-
+                    Session["fName"] = fname;
                     Session["socialType"] = "local";
                     Session["socialOrNot"] = 0; //HERE 0 MEANS LOCAL USER.
 

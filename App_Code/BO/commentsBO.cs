@@ -53,5 +53,11 @@ using System.Web;
             get;
             set;
         }
+        public Boolean reportAbuseComment
+        {
+            get;
+            set;
+
+        }
 
     }

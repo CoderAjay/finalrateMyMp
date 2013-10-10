@@ -12,8 +12,6 @@
 <link rel="stylesheet" type="text/css" href="../CSS/bootstrap-responsive.css" />
 <link rel="stylesheet" type="text/css" href="../CSS/style1.css" />
 <script type="text/javascript" src="../JS/jquery-1.9.1.js"></script>
-
-
 <script type="text/javascript" src="../JS/bootstrap.js"></script>
      <!-- google analytics script -->
     <script>
@@ -96,7 +94,7 @@
 	<div id="main_container">
     	<div id="main_left">
         	<div class="logo">
-            	<a href="index.aspx"><img src="../images/LOG.png" /></a>
+            	<a href="Homepage.aspx"><img src="../images/LOG.png" /></a>
             </div>
             <div class="search_bar">
             	<h3>Select a Member</h3>
@@ -116,8 +114,7 @@
                 <div class="search_button">
                     <asp:Button ID="Btnsearch" CssClass="btn" runat="server" Text="Search" OnClick="Btnsearch_Click" />
                 </div>
-               
-               
+  
             </div>
             <div class="main_left_links">
             	<ul class="nav nav_inner">
@@ -148,7 +145,7 @@
                 	</div>
                     <div class="search_box">
                         <asp:LinkButton ID="LBsearch" runat="server" class="icon-search search_icon"/>
-                        <asp:TextBox ID="txtsearchBox" class="search-query seach_box_inner" runat="server" PlaceHolder="Search for Member, Constituency or state"/>
+                        <asp:TextBox ID="txtsearchBox" placeholder="Search for Member, Constituency or state" class="search-query seach_box_inner" runat="server"/>
                         <%--<asp:TextBoxWatermarkExtender runat="server" TargetControlID="txtsearchBox" WatermarkText="Search for Member, Constituency or state" 
                            />--%>
                     </div>
@@ -188,15 +185,14 @@
                     <div class="likebutton">
                         <asp:UpdatePanel runat="server" UpdateMode="Conditional"><ContentTemplate>
                         <div class="bound1">
-                        <i class="icon-thumbs-up"></i><label><asp:Label ID="LBLsupportCount" runat="server"/></label><asp:LinkButton ID="LBsupport" runat="server" Text="Support" CommandName="support"/>
-                        <i class="icon-thumbs-down"></i><label><asp:Label ID="LBLdenyCount" runat="server"/></label><asp:LinkButton ID="LBdeny" runat="server" Text="Deny" CommandName="deny"/>
-                        <i class="icon-comment"></i><label><asp:Label ID="LBLcommentCount" runat="server"/></label>
+                        <%--<i class="icon-thumbs-up"></i>--%> <img src="../images/up.png" class="pull-left mg-top5" /><label><asp:Label ID="LBLsupportCount" runat="server"/></label><asp:LinkButton ID="LBsupport" runat="server" Text="Support" CommandName="support"/>
+                        <%--<i class="icon-thumbs-down"></i>--%><img src="../images/down.png" class="pull-left mg-top5" /><label><asp:Label ID="LBLdenyCount" runat="server"/></label><asp:LinkButton ID="LBdeny" runat="server" Text="Deny" CommandName="deny"/>
+                        <%--<i class="icon-comment"></i>--%><img src="../images/comment.png" class="pull-left mg-top5" /><label><asp:Label ID="LBLcommentCount" runat="server"/></label>
                         </div>
                            </ContentTemplate>
                             <Triggers>
                                 <asp:AsyncPostBackTrigger EventName="Click" ControlID="LBsupport" />
                                 <asp:AsyncPostBackTrigger EventName="Click" ControlID="LBdeny" />
-                                <asp:AsyncPostBackTrigger EventName="Click" ControlID="btnPost" />
                             </Triggers>
                         </asp:UpdatePanel>
                             <div class="bound2">
@@ -229,8 +225,8 @@
                     <asp:HiddenField runat="server" ID="HFcommentId" Value='<%# DataBinder.Eval(Container.DataItem,"commentId") %>' />
                      <asp:UpdatePanel runat="server" UpdateMode="Conditional"><ContentTemplate>
                         <div class="sub_icons"> 
-                               <i class="icon icon-thumbs-up"></i><asp:Label runat="server" ID="LBLlikeCount"/><asp:LinkButton ID="LBlike" runat="server" Text="Like" CommandName="like"/> 
-                               <i class="icon icon-thumbs-down"></i><asp:Label runat="server" ID="LBLdislikeCount"/> <asp:LinkButton ID="LBdislike" runat="server" Text="Dislike" CommandName="dislike"/>
+                               <%--<i class="icon icon-thumbs-up"></i>--%> <img src="../images/up.png" class="pull-left mg-top5" /><asp:Label runat="server" ID="LBLlikeCount"/><asp:LinkButton ID="LBlike" runat="server" Text="Like" CommandName="like"/> 
+                               <%--<i class="icon icon-thumbs-down"></i>--%><img src="../images/down.png" class="mg-top5" /><asp:Label runat="server" ID="LBLdislikeCount"/> <asp:LinkButton ID="LBdislike" runat="server" Text="Dislike" CommandName="dislike"/>
                         </div>
                     </ContentTemplate>
                          <Triggers>
@@ -242,7 +238,7 @@
                    </ItemTemplate></asp:Repeater> 
                     
                     <div class="text_comment">
-                            <asp:TextBox ID="txtcomment" runat="server" TextMode="MultiLine" style="width:95%" placeholder="Puts Your Comments" />
+                            <asp:TextBox ID="txtcomment" placeholder="Puts Your Comments" runat="server" TextMode="MultiLine" style="width:95%" />
                              <%--<asp:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender1" runat="server" TargetControlID="txtComment" WatermarkText="Puts Your Comments"/>--%>
                         </div>
                        <div class="post_button">
@@ -282,9 +278,7 @@
                 </div>
              </div>
         </div>
-
         <asp:HiddenField ID="HiddenField1" runat="server" />
-
      </form>
      <!-- user nap script--> 
       <script type="text/javascript">

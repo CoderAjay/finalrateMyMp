@@ -6,12 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 
-/// <summary>
-/// Author:		<Ajay Singh >
-/// Email :      <meajaysingh@hotmail.com>
-/// Create date: <Create Date,5/10/2013> 
-/// Authentication Part Done By : <Kamal Pathak>
-/// </summary>
 public partial class Homepage : System.Web.UI.Page
 {
     private ConstituencyBAL constituency = new ConstituencyBAL();
@@ -32,8 +26,9 @@ public partial class Homepage : System.Web.UI.Page
            //LBsearch.Enabled = false;
            userCreateAndSession();
             loadStates();
-            loadlist(50,0);  
+            loadlist(50,0);/* number of issues,type of issues,mpId( 0 means no mpId) */  
         }
+       LBLuserName.Text = "Hi! "+Session["fName"].ToString();
     }
     private void userCreateAndSession()
     {
@@ -53,11 +48,13 @@ public partial class Homepage : System.Web.UI.Page
                         if (Request["social"].ToString() == "yes")
                         {
                             Session["userEmail"] = Request["email"].ToString();
+                            
                             Session["socialType"] = Request["socialType"].ToString();  //google or facebook
                             Session["socialOrNot"] = 1; // 1 for login through social network 0 for local login
                             string tnameval = Request["name"].ToString();
                             string[] tnamearray = tnameval.Split(' ');
                             fname = tnamearray[0];
+                            Session["fName"] = fname;
                             if (tnamearray.Length > 1)
                             {
                                 lname = tnamearray[1];
@@ -73,6 +70,7 @@ public partial class Homepage : System.Web.UI.Page
                         userMasterBO.email = Session["userEmail"].ToString();
                         userMasterBO.lastName = lname;
                         userMasterBO.firstName = fname;
+                        
                         userMasterBO.middleName = "";
                         if (int.Parse(Session["socialOrNot"].ToString()) == 1)
                         {
@@ -145,33 +143,22 @@ public partial class Homepage : System.Web.UI.Page
 
     protected void DDListState_SelectedIndexChanged(object sender, EventArgs e)
     {
-        try
-        {
-            Int16 stateId = Convert.ToInt16(DDListState.SelectedValue);
-            DDListConstituency.Items.Clear();
-            DDListConstituency.AppendDataBoundItems = true;
-            DDListConstituency.Items.Add("Constituency");
-            DDListConstituency.DataSource = (DataTable)constituency.getData(stateId);
-            DDListConstituency.DataTextField = "constituency";
-            DDListConstituency.DataValueField = "constituencyId";
-            DDListConstituency.DataBind();
-
-        }
-        catch
-        {
-            throw;
-        }
-        finally
-        {
-        }
+        Int16 stateId = Convert.ToInt16(DDListState.SelectedValue);
+        DDListConstituency.Items.Clear();
+        DDListConstituency.Items.Add("Constituency");
+        DDListConstituency.DataSource = (DataTable)constituency.getData(stateId);
+        DDListConstituency.DataTextField = "constituency";
+        DDListConstituency.DataValueField = "constituencyId";
+        DDListConstituency.DataBind();
     }
 
     protected void Btnsearch_Click(object sender, EventArgs e)
     {
 
         Int16 constituencyId = Convert.ToInt16(DDListConstituency.SelectedValue);
-        HFconstituencyId.Value = "1";// constituencyId.ToString();
-        Server.Transfer("usercomment.aspx", true);
+       // HFconstituencyId.Value = "1";//constituencyId.ToString();
+        //Server.Transfer("usercomment.aspx", true);
+        Response.Redirect("usercomment.aspx?cid="+constituencyId);
 
     }
     protected void LBtrending_Click(object sender, EventArgs e)
@@ -195,65 +182,55 @@ public partial class Homepage : System.Web.UI.Page
     }
     protected void ListIssues_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        try
+        HiddenField issueId = (HiddenField)e.Item.FindControl("HFIssueId");
+        DataTable dt = (DataTable)issuesbal.getIssue(Convert.ToInt64(issueId.Value));
+        DataTable voterDt = (DataTable)issuesbal.getVoters(Convert.ToInt64(issueId.Value));
+        /****Issues***/
+        ((Image)e.Item.FindControl("IMGprofilePic")).ImageUrl = dt.Rows[0]["profilePic"].ToString();
+        ((Label)e.Item.FindControl("LBLpostedBy")).Text = dt.Rows[0]["firstName"].ToString() + " " + dt.Rows[0]["lastName"].ToString();
+        ((Label)e.Item.FindControl("LBLpstate")).Text = "Andheri East(Mumbai)";
+        ((Label)e.Item.FindControl("LBLdt")).Text = ((DateTime)(dt.Rows[0]["postedOn"])).ToString("d/MMM/yyyy hh:mm tt");
+        if (voterDt.Rows.Count == 2)
         {
-            HiddenField issueId = (HiddenField)e.Item.FindControl("HFIssueId");
-            DataTable dt = (DataTable)issuesbal.getIssue(Convert.ToInt64(issueId.Value));
-            DataTable voterDt = (DataTable)issuesbal.getVoters(Convert.ToInt64(issueId.Value));
-            /****Issues***/
-            ((Image)e.Item.FindControl("IMGprofilePic")).ImageUrl = dt.Rows[0]["profilePic"].ToString();
-            ((Label)e.Item.FindControl("LBLpostedBy")).Text = dt.Rows[0]["firstName"].ToString() + " " + dt.Rows[0]["lastName"].ToString();
-            ((Label)e.Item.FindControl("LBLpstate")).Text = "Andheri East(Mumbai)";
-            ((Label)e.Item.FindControl("LBLdt")).Text = ((DateTime)(dt.Rows[0]["postedOn"])).ToString("d/MMM/yyyy hh:mm tt");
-            if (voterDt.Rows.Count == 2)
-            {
-                ((Label)e.Item.FindControl("LBLfpname")).Text = voterDt.Rows[0]["firstName"].ToString() + " " + voterDt.Rows[0]["lastName"].ToString() + ",";
-                ((Label)e.Item.FindControl("LBLspname")).Text = voterDt.Rows[1]["firstName"].ToString() + " " + voterDt.Rows[1]["lastName"].ToString();
-                ((LinkButton)e.Item.FindControl("LBmore")).Visible = false;
-            }
-            else if (voterDt.Rows.Count == 1)
-            {
-                ((Label)e.Item.FindControl("LBLfpname")).Text = voterDt.Rows[0]["firstName"].ToString() + " " + voterDt.Rows[0]["lastName"].ToString();
-                ((LinkButton)e.Item.FindControl("LBmore")).Visible = false;
-            }
-            else if (voterDt.Rows.Count > 2)
-            {
-                ((Label)e.Item.FindControl("LBLfpname")).Text = voterDt.Rows[0]["firstName"].ToString() + " " + voterDt.Rows[0]["lastName"].ToString() + ",";
-                ((Label)e.Item.FindControl("LBLspname")).Text = voterDt.Rows[1]["firstName"].ToString() + " " + voterDt.Rows[1]["lastName"].ToString() + " and ";
-                ((LinkButton)e.Item.FindControl("LBmore")).Visible = true;
-
-            }
-            else
-            {
-                ((Label)e.Item.FindControl("LBLfpname")).Text = "(None) Be first to vote it";
-                ((LinkButton)e.Item.FindControl("LBmore")).Visible = false;
-            }
-            ((Label)e.Item.FindControl("LBLIssue")).Text = dt.Rows[0]["issueText"].ToString();
-
-            ///***** LinkButtonS *****/
-            ((LinkButton)e.Item.FindControl("LBsupport")).CommandArgument = issueId.Value;
-            ((LinkButton)e.Item.FindControl("LBdeny")).CommandArgument = issueId.Value;
-            ((LinkButton)e.Item.FindControl("LBcomment")).CommandArgument = issueId.Value;
-            ((Button)e.Item.FindControl("btnPost")).CommandArgument = issueId.Value;
-            ///***** Counts values *****/
-            //((Label)e.Item.FindControl("LBLvoteCount")).Text = dt.Rows[0]["voteCount"].ToString();
-            ((Label)e.Item.FindControl("LBLsupportCount")).Text = dt.Rows[0]["supportCount"].ToString();
-            ((Label)e.Item.FindControl("LBLdenyCount")).Text = dt.Rows[0]["denyCount"].ToString();
-            ((Label)e.Item.FindControl("LBLcommentCount")).Text = dt.Rows[0]["commentCount"].ToString();
-
-            ///*** post link button ***/
-            //((LinkButton)e.Item.FindControl("btnpost")).CommandArgument = issueId.Value;
-            ((Repeater)e.Item.FindControl("ListComments")).DataSource = (DataTable)commentbal.getComments(Convert.ToInt64(issueId.Value));
-            ((Repeater)e.Item.FindControl("ListComments")).DataBind();
+            ((Label)e.Item.FindControl("LBLfpname")).Text = voterDt.Rows[0]["firstName"].ToString() + " " + voterDt.Rows[0]["lastName"].ToString() + ",";
+            ((Label)e.Item.FindControl("LBLspname")).Text = voterDt.Rows[1]["firstName"].ToString() + " " + voterDt.Rows[1]["lastName"].ToString();
+            ((LinkButton)e.Item.FindControl("LBmore")).Visible = false;
         }
-        catch
+        else if (voterDt.Rows.Count == 1)
         {
-            throw;
+            ((Label)e.Item.FindControl("LBLfpname")).Text = voterDt.Rows[0]["firstName"].ToString() + " " + voterDt.Rows[0]["lastName"].ToString();
+            ((LinkButton)e.Item.FindControl("LBmore")).Visible = false;
         }
-        finally
+        else if (voterDt.Rows.Count > 2)
         {
+            ((Label)e.Item.FindControl("LBLfpname")).Text = voterDt.Rows[0]["firstName"].ToString() + " " + voterDt.Rows[0]["lastName"].ToString() + ",";
+            ((Label)e.Item.FindControl("LBLspname")).Text = voterDt.Rows[1]["firstName"].ToString() + " " + voterDt.Rows[1]["lastName"].ToString() + " and ";
+            ((LinkButton)e.Item.FindControl("LBmore")).Visible = true;
+
         }
+        else
+        {
+            ((Label)e.Item.FindControl("LBLfpname")).Text = "(None) Be first to vote it";
+            ((LinkButton)e.Item.FindControl("LBmore")).Visible = false;
+        }
+        ((Label)e.Item.FindControl("LBLIssue")).Text = dt.Rows[0]["issueText"].ToString();
        
+        ///***** LinkButtonS *****/
+        ((LinkButton)e.Item.FindControl("LBsupport")).CommandArgument = issueId.Value;
+        ((LinkButton)e.Item.FindControl("LBdeny")).CommandArgument = issueId.Value;
+        ((LinkButton)e.Item.FindControl("LBcomment")).CommandArgument = issueId.Value;
+        ((Button)e.Item.FindControl("btnPost")).CommandArgument = issueId.Value;
+        ///***** Counts values *****/
+        //((Label)e.Item.FindControl("LBLvoteCount")).Text = dt.Rows[0]["voteCount"].ToString();
+        ((Label)e.Item.FindControl("LBLsupportCount")).Text = dt.Rows[0]["supportCount"].ToString();
+        ((Label)e.Item.FindControl("LBLdenyCount")).Text = dt.Rows[0]["denyCount"].ToString();
+        ((Label)e.Item.FindControl("LBLcommentCount")).Text = dt.Rows[0]["commentCount"].ToString();
+        
+        ///*** post link button ***/
+        //((LinkButton)e.Item.FindControl("btnpost")).CommandArgument = issueId.Value;
+        ((Repeater)e.Item.FindControl("ListComments")).DataSource =(DataTable)commentbal.getComments(Convert.ToInt64(issueId.Value));
+        ((Repeater)e.Item.FindControl("ListComments")).DataBind();
+           
     }
 
     protected void ListIssues_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -271,7 +248,7 @@ public partial class Homepage : System.Web.UI.Page
             }
             else if (btncmdname == "support")
             {
-                supportdenybo.guid = int.Parse(Session["guid"].ToString()); ; /** from session **/
+                supportdenybo.guid = int.Parse(Session["guid"].ToString());  /** from session **/
                 supportdenybo.issueId = issueId;
                 supportdenybo.supportDeny = true;
                 supportdenybal.updateData(supportdenybo);
@@ -301,10 +278,7 @@ public partial class Homepage : System.Web.UI.Page
                 commentbal.postComment(commentsbo);
                 ((Repeater)e.Item.FindControl("ListComments")).DataSource = (DataTable)commentbal.getComments(Convert.ToInt64(issueId));
                 ((Repeater)e.Item.FindControl("ListComments")).DataBind();
-                DataTable dt = issuesbal.getIssue(issueId);
-                ((Label)e.Item.FindControl("LBLcommentCount")).Text = dt.Rows[0]["commentCount"].ToString();
-          
-
+         
              }
         }
         catch
@@ -322,32 +296,22 @@ public partial class Homepage : System.Web.UI.Page
 
     protected void ListComments_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        try
-        {
-            HiddenField commentId = (HiddenField)e.Item.FindControl("HFcommentId");
-            ((LinkButton)e.Item.FindControl("LBlike")).CommandArgument = commentId.Value;
-            ((LinkButton)e.Item.FindControl("LBdislike")).CommandArgument = commentId.Value;
-            DataTable dt = new DataTable();
-            dt = (DataTable)commentbal.getComment(Convert.ToInt64(commentId.Value));
-            ((Label)e.Item.FindControl("LBLlikeCount")).Text = dt.Rows[0]["likeCount"].ToString();
-            ((Label)e.Item.FindControl("LBLdislikeCount")).Text = dt.Rows[0]["dislikeCount"].ToString();
-        }
-        catch
-        {
-            throw;
-        }
-        finally{
-        }
+        HiddenField commentId = (HiddenField)e.Item.FindControl("HFcommentId");
+        ((LinkButton)e.Item.FindControl("LBlike")).CommandArgument = commentId.Value;
+        ((LinkButton)e.Item.FindControl("LBdislike")).CommandArgument = commentId.Value;
+        DataTable dt = new DataTable();
+        dt = (DataTable)commentbal.getComment(Convert.ToInt64(commentId.Value));
+        ((Label)e.Item.FindControl("LBLlikeCount")).Text = dt.Rows[0]["likeCount"].ToString();
+        ((Label)e.Item.FindControl("LBLdislikeCount")).Text = dt.Rows[0]["dislikeCount"].ToString();
 
     }
     protected void ListComments_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         likeDislikeBo likedislikebo = new likeDislikeBo();
-        string btncmdname;
+        string btncmdname = e.CommandName.ToString();
         Int64 commentId;
         try
         {
-            btncmdname = e.CommandName.ToString();
             commentId = Convert.ToInt64(e.CommandArgument);
             if (btncmdname == "like")
             {

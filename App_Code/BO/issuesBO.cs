@@ -47,4 +47,37 @@ using System.Web;
             set;
             get;
         }
+        public Int64 voteCount
+        {
+            set;
+            get;
+        }
+
+        public Int64 supportCount
+        {
+            set;
+            get;
+        }
+        public Int64 denyCount
+        {
+            set;
+            get;
+        }
+        public Int64 commentCount
+        {
+            set;
+            get;
+        }
+
+        public bool solved
+        {
+            set;
+            get;
+        }
+
+        public bool reportAbuseIssue
+        {
+            set;
+            get;
+        }
     }

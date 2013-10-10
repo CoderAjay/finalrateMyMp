@@ -7,11 +7,8 @@ using System.Configuration;
 using System.Data.SqlClient;
 
 /// <summary>
-/// Author:		<Ajay Singh >
-/// Email :      <meajaysingh@hotmail.com>
-/// Create date: <Create Date,5/10/2013> 
+/// Summary description for CommentDAL
 /// </summary>
-
 public class CommentDAL
 {
     SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["rateMyMPConnectionString"].ConnectionString);
@@ -19,13 +16,66 @@ public class CommentDAL
     SqlDataAdapter dap;
     string query;
 
-
 	public CommentDAL()
 	{
 		//
 		// TODO: Add constructor logic here
 		//
 	}
+    public void updateReportAbuseComment(commentsBO commentsBO)
+    {
+        try
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            query = "updateCommentReportedAsAbuse";
+            cmd = new SqlCommand(query, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@guid", commentsBO.guid);
+            cmd.Parameters.AddWithValue("@commentId", commentsBO.commentId);
+            cmd.Parameters.AddWithValue("@enable", commentsBO.enable);
+            cmd.Parameters.AddWithValue("@reportabuse", commentsBO.reportAbuseComment);
+            cmd.ExecuteNonQuery();
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            if (con.State == ConnectionState.Open)
+                con.Close();
+        }
+    }
+    public DataTable fetchAbuseCommentReport()
+    {
+        try
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            query = "commentReportedAsAbuse";
+            dap = new SqlDataAdapter(query, con);
+            dap.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            dap.Fill(ds, "temp");
+            dap.Dispose();
+            return ds.Tables["temp"];
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            if (con.State == ConnectionState.Open)
+                con.Close();
+        }
+        
+    }
     public DataTable getComments(Int64 issueId)
     {
         try

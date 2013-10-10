@@ -27,27 +27,31 @@ body
 }
 .padding-left68
 {
-	padding-left:68px;
+	padding-left:72px;
 }
 .padding-right68
 {
-	padding-right:68px;
+	padding-right:78px;
+}
+.padding-left75
+{
+	padding-left: 74px;
 }
 .padding-left78
 {
 	padding-left:78px;
 }
-.padding-right78
+.padding-right86
 {
-	padding-right:78px;
+	padding-right:97px;
 }
 .padding-left100
 {
-	padding-left:135px;
+	padding-left:139px;
 }
 .padding-right100
 {
-	padding-right:135px;
+	padding-right:140px;
 }
 .padding0
 {
@@ -61,6 +65,7 @@ body
 {
 	padding-top:20px;
 }
+
 .padding-top50
 {
 	padding-top:50px;
@@ -68,6 +73,10 @@ body
 .padding-bottom20
 {
 	padding-bottom:20px;
+}
+.padding-bottom15
+{
+	padding-bottom:15px;
 }
 .padding-top40
 {
@@ -113,6 +122,15 @@ body
 {
 	margin-right:95px;
 }
+.mg-left8
+{
+	margin-left: 8px;
+}
+.mg-left6
+{
+	margin-left: 8px;
+}
+
 .mg-left10
 {
 	margin-left:20px;
@@ -133,6 +151,10 @@ body
 .slowtrasition
 {
 	transition:background ease 2s;
+}
+.chckpad-right4
+{
+	padding-right: 5px;
 }
 #signinEmailValidation
 {

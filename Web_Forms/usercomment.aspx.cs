@@ -13,14 +13,46 @@ public partial class Web_Forms_usercomment : System.Web.UI.Page
     private LikeDislikeBAL likedislikebal = new LikeDislikeBAL();
     private CommentBAL commentbal = new CommentBAL();
 
+    public Int64 mpidval;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-
+            userCreateAndSession();
             loadlist(50, 0);
-            getMpdata(1);
+            Int16 x =Int16.Parse( Request["cid"].ToString());
+            getMpdata(x);
+        }
+        LBLuserName.Text= "Hi! " + Session["fName"].ToString();
+    }
+    private void userCreateAndSession()
+    {
+        if (Session["userEmail"] == null)
+        {
+            Response.Redirect("../Default.aspx");
+        }
+        else if (Session["userEmail"] != null)
+        {
+            if (int.Parse(Session["socialOrNot"].ToString()) == 1)
+            {
+                if (Session["socialType"].ToString() == "GOOGLE")
+                {
+                    // for google login
+                    googleLogout.Visible = true;
+                    facebookLogout.Visible = false;
+                }
+                else if (Session["socialType"].ToString() == "FACEBOOK")
+                {
+                    facebookLogout.Visible = true;
+                }
+            }
+            else
+            {
+                // for local userlogin
+                localLogout.Visible = true;
+                facebookLogout.Visible = false;
+            }
         }
     }
 
@@ -40,6 +72,7 @@ public partial class Web_Forms_usercomment : System.Web.UI.Page
             lblprofession.Text = dt.Rows[0]["profession"].ToString();
             lblp_address.Text = dt.Rows[0]["permanentAddress"].ToString() + ", " + dt.Rows[0][12].ToString() + ", " + dt.Rows[0][13].ToString();
             lblpresent_address.Text = dt.Rows[0]["currentAddress"].ToString() + ", " + dt.Rows[0][15].ToString() + ", " + dt.Rows[0][16].ToString();
+            mpidval = Int64.Parse(dt.Rows[0]["mpId"].ToString());
             //DataTable numDt = new DataTable();
             //numDt = issuesbal.Issues_Numbers(Convert.ToInt64(dt.Rows[0]["mpId"]));
             //lblissuesno.Text = numDt.Rows[0][0].ToString();
@@ -138,7 +171,7 @@ public partial class Web_Forms_usercomment : System.Web.UI.Page
             }
             else if (btncmdname == "support")
             {
-                supportdenybo.guid = 44; /** from session **/
+                supportdenybo.guid = int.Parse(Session["guid"].ToString()); /** from session **/
                 supportdenybo.issueId = issueId;
                 supportdenybo.supportDeny = true;
                 supportdenybal.updateData(supportdenybo);
@@ -148,7 +181,7 @@ public partial class Web_Forms_usercomment : System.Web.UI.Page
             }
             else if (btncmdname == "deny")
             {
-                supportdenybo.guid = 44; /** from session **/
+                supportdenybo.guid = int.Parse(Session["guid"].ToString()); ; /** from session **/
                 supportdenybo.issueId = issueId;
                 supportdenybo.supportDeny = false;
                 supportdenybal.updateData(supportdenybo);
@@ -164,12 +197,13 @@ public partial class Web_Forms_usercomment : System.Web.UI.Page
                 commentsbo.comment = ((TextBox)(e.Item.FindControl("TxtComment"))).Text;
                 commentsbo.issueId = issueId;
                 txtcomment.Text = "";
-                commentsbo.guid = 44; /** from session **/
+                commentsbo.guid = int.Parse(Session["guid"].ToString()); /** from session **/
                 commentbal.postComment(commentsbo);
                 ((Repeater)e.Item.FindControl("ListComments")).DataSource = (DataTable)commentbal.getComments(Convert.ToInt64(issueId));
                 ((Repeater)e.Item.FindControl("ListComments")).DataBind();
                 DataTable dt = issuesbal.getIssue(issueId);
                 ((Label)e.Item.FindControl("LBLcommentCount")).Text = dt.Rows[0]["commentCount"].ToString();
+                loadlist(50, 0);
             }
         }
         catch
@@ -215,7 +249,7 @@ public partial class Web_Forms_usercomment : System.Web.UI.Page
             commentId = Convert.ToInt64(e.CommandArgument);
             if (btncmdname == "like")
             {
-                likedislikebo.guId = 44; /*** from session ***/
+                likedislikebo.guId = int.Parse(Session["guid"].ToString()); /*** from session ***/
                 likedislikebo.commentId = commentId;
                 likedislikebo.likeDislike = true;
                 likedislikebal.updateData(likedislikebo);
@@ -227,7 +261,7 @@ public partial class Web_Forms_usercomment : System.Web.UI.Page
             }
             if (btncmdname == "dislike")
             {
-                likedislikebo.guId = 44;
+                likedislikebo.guId = int.Parse(Session["guid"].ToString());
                 likedislikebo.commentId = commentId;
                 likedislikebo.likeDislike = false;
                 likedislikebal.updateData(likedislikebo);
@@ -261,8 +295,8 @@ public partial class Web_Forms_usercomment : System.Web.UI.Page
                 fileName = Server.MapPath("~/image/") + FileUploadIssue.FileName;
                 FileUploadIssue.SaveAs(fileName);
             }
-            issuebo.guid = 1; /** from session **/
-            issuebo.mpId = 3;
+            issuebo.guid = int.Parse(Session["guid"].ToString());  /** from session **/
+            issuebo.mpId = mpidval;
             issuebo.issueText = TXTissue.Text;
             TXTissue.Text = "";
             issuesbal.postIssue(issuebo);
@@ -274,5 +308,31 @@ public partial class Web_Forms_usercomment : System.Web.UI.Page
         }
         finally { }
 
+    }
+    protected void googleLogout_Click(object sender, EventArgs e)
+    {
+        if (Session["userEmail"] != null)
+        {
+            Session.Abandon();
+
+        }
+        // ClientScript.RegisterStartupScript(this.GetType(), "myfunction", "logout()", true);
+        Page.ClientScript.RegisterClientScriptBlock(Page.GetType(), "myfunction", "logout()", true);
+    }
+    protected void localLogout_Click(object sender, EventArgs e)
+    {
+        if (Request.Cookies["UserCookies"] != null)
+        {   // here we are deleting the cookie.
+            Response.Cookies["UserCookies"].Expires = DateTime.Now.AddDays(-1);
+            if (Session["userEmail"] == null)
+            {
+                Response.Redirect("../Default.aspx");
+            }
+        }
+        if (Session["userEmail"] != null)
+        {
+            Session.Abandon();
+            Response.Redirect("../Default.aspx");
+        }
     }
 }

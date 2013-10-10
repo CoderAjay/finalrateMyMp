@@ -5,12 +5,8 @@ using System.Web;
 using System.Data;
 
 /// <summary>
-/// Author:		<Ajay Singh >
-/// Email :      <meajaysingh@hotmail.com>
-/// Create date: <Create Date,5/10/2013> 
+/// Summary description for CommentBAL
 /// </summary>
-
-
 public class CommentBAL
 {
     private CommentDAL commentdal = new CommentDAL();
@@ -21,6 +17,37 @@ public class CommentBAL
 		//
 	}
 
+    public void updateReportAbuseComment(commentsBO commmentsBO)
+    {
+        try
+        {
+            commentdal.updateReportAbuseComment(commmentsBO);
+        }
+        catch
+        {
+
+        }
+        finally
+        {
+
+        }
+
+    }
+    public DataTable fetchAbuseCommentReport()
+    {
+        try
+        {
+            return commentdal.fetchAbuseCommentReport();
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+
+        }
+    }
     public DataTable getComments(Int64 issueId)
     {
         try

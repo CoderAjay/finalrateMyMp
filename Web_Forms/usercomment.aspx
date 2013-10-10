@@ -17,15 +17,80 @@
 <script type="text/javascript" src="../js/jquery.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="../js/jquery-te-1.4.0.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
+
+
+      <!-- script to logout from  google session  -->
+    <script>
+        function logout() {
+
+            document.location.href = " https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:20486/Default.aspx";
+            return true;
+        }
+
+    </script> 
+       
+    <!-- script to logout from facebook session -->
+   <script type="text/javascript" src="/JS/fb.js"></script>
+   <script src="http://connect.facebook.net/en_US/all.js" type="text/javascript"></script>
+       <script>
+           //Load the SDK Asynchronously
+           (function (d) {
+               var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+               if (d.getElementById(id)) { return; }
+               js = d.createElement('script'); js.id = id; js.async = true;
+               js.src = "//connect.facebook.net/en_US/all.js";
+               ref.parentNode.insertBefore(js, ref);
+           }(document));
+
+           // Init the SDK upon load
+           var fbl;
+           window.fbAsyncInit = function () {
+               fb1 = FB.init({
+                   appId: '158860384321647', // App ID 
+                   channelUrl: '//' + window.location.hostname + '/channel', // Path to your Channel File
+                   status: true, // check login status  
+                   cookie: true, // enable cookies to allow the server to access the session
+                   xfbml: true  // parse XFBML
+               });
+
+               $("#facebookLogout").click(function () {
+                   kpfb();
+
+               });
+           };
+
+           function kpfb() {
+               FB.getLoginStatus(function (response) {
+                   if (response.status == 'connected') {
+                       //alert(response.status);
+                       FB.logout(function (response) {
+
+                           kpredirect();
+                       });
+                   }
+               });
+           }
+
+           function kpredirect() {
+               window.location.reload();
+               // alert("test3");
+               document.location.href = "../Default.aspx";
+           }
+
+    </script>
+     <script>
+         function homeredirect() {
+             document.localName.href = "Homepage.aspx";
+         }
+     </script>
      </head>
 <body>
     <form id="frmusercomment" runat="server" class="formtag"  >
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true"/>
-<div id="main"> 
-	<div id="main_container">
+<div id="main"> 	<div id="main_container">
     	<div id="main_left">
         	<div class="logo">
-               <a href="index.aspx"><img src="../images/LOG.png" /></a>
+               <a href="Homepage.aspx"><img src="../images/LOG.png" /></a>
             </div>
          <div class="mp_info">
           <div class="heading">
@@ -82,9 +147,13 @@
            <div id="main_right">
             <div id="home_container">
             	<div class="home_right">
-                	<label class="user_outr">Hi User,</label>
-                	<input type="button" class="btn btn_home" value="Home" />
-                    <input type="button" class="btn btn_home" value="Logout" />
+                	<label  class="user_outr"> <asp:Label ID="LBLuserName" runat="server" Text="Label"></asp:Label></label>
+                	<input  id="homeRedirect" type ="button" class="btn btn_home" OnClick="homeredirect()"  value="Home" />
+                    <%--<input id="homeRedirect" class="btn btn_home" type="button"   value ="Home" />--%>
+                    <input type="button" id="facebookLogout" class="btn btn_home" value="Logout"  runat="server"/>
+                    <asp:Button ID="googleLogout" class="btn btn_home" runat="server" Text="Logout" Visible="false" OnClick="googleLogout_Click" />
+                    <asp:Button ID="localLogout" class="btn btn_home" runat="server" Text="Logout"  Visible="false" OnClick="localLogout_Click"/>
+                
                 </div>
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional"><ContentTemplate>
                 <div class="text_editor_outr">
@@ -137,9 +206,9 @@
                     <div class="likebutton">
                         <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional"><ContentTemplate>
                         <div class="bound1">
-                        <i class="icon-thumbs-up"></i><label><asp:Label ID="LBLsupportCount" runat="server"/></label><asp:LinkButton ID="LBsupport" runat="server" Text="Support" CommandName="support"/>
-                        <i class="icon-thumbs-down"></i><label><asp:Label ID="LBLdenyCount" runat="server"/></label><asp:LinkButton ID="LBdeny" runat="server" Text="Deny" CommandName="deny"/>
-                        <i class="icon-comment"></i><label><asp:Label ID="LBLcommentCount" runat="server"/></label>
+                        <%--<i class="icon-thumbs-up"></i>--%><img src="../images/up.png" class="pull-left mg-top5" /><label><asp:Label ID="LBLsupportCount" runat="server"/></label><asp:LinkButton ID="LBsupport" runat="server" Text="Support" CommandName="support"/>
+                        <%--<i class="icon-thumbs-down"></i>--%><img src="../images/down.png" class="pull-left mg-top5" /><label><asp:Label ID="LBLdenyCount" runat="server"/></label><asp:LinkButton ID="LBdeny" runat="server" Text="Deny" CommandName="deny"/>
+                        <%--<i class="icon-comment"></i>--%><img src="../images/comment.png" class="pull-left mg-top5" /><label><asp:Label ID="LBLcommentCount" runat="server"/></label>
                         </div>
                            </ContentTemplate>
                             <Triggers>
@@ -178,8 +247,8 @@
                     <asp:HiddenField runat="server" ID="HFcommentId" Value='<%# DataBinder.Eval(Container.DataItem,"commentId") %>' />
                      <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional"><ContentTemplate>
                         <div class="sub_icons"> 
-                               <i class="icon icon-thumbs-up"></i><asp:Label runat="server" ID="LBLlikeCount"/><asp:LinkButton ID="LBlike" runat="server" Text="Like" CommandName="like"/> 
-                               <i class="icon icon-thumbs-down"></i><asp:Label runat="server" ID="LBLdislikeCount"/> <asp:LinkButton ID="LBdislike" runat="server" Text="Dislike" CommandName="dislike"/>
+                               <%--<i class="icon icon-thumbs-up"></i>--%><img src="../images/up.png" class="pull-left mg-top5" /><asp:Label runat="server" ID="LBLlikeCount"/><asp:LinkButton ID="LBlike" runat="server" Text="Like" CommandName="like"/> 
+                               <%--<i class="icon icon-thumbs-down"></i>--%><img src="../images/down.png" class="mg-top5" /><asp:Label runat="server" ID="LBLdislikeCount"/> <asp:LinkButton ID="LBdislike" runat="server" Text="Dislike" CommandName="dislike"/>
                         </div>
                     </ContentTemplate>
                          <Triggers>

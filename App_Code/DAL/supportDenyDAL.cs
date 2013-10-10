@@ -5,14 +5,9 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-
 /// <summary>
-/// Author:		<Ajay Singh >
-/// Email :      <meajaysingh@hotmail.com>
-/// Create date: <Create Date,7/10/2013> 
+/// Summary description for supportDenyDAL
 /// </summary>
-
-
 public class supportDenyDAL
 {
     SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["rateMyMPConnectionString"].ConnectionString);

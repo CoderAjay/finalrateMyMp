@@ -10,17 +10,45 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 /// <summary>
-/// Author:		<Ajay Singh >
-/// Email :      <meajaysingh@hotmail.com>
-/// Create date: <Create Date,5/10/2013> 
+
 /// </summary>
-
-
 public class IssuesBAL
 {
     private IssuesDAL ob = new IssuesDAL();
     public IssuesBAL()
     {
+    }
+    public void updateReportAbuseIssue(issuesBO issuesBO)
+    {
+        try
+        {
+            ob.updateReportAbuseIssue(issuesBO);
+        }
+        catch
+        {
+
+        }
+        finally
+        {
+
+        }
+
+    }
+    public DataTable fetchAbuseIssueReport()
+    {
+        try
+        {
+            return ob.fetchAbuseIssueReport();
+
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+
+        }
     }
     public DataTable getIssues(Int64 number, Int16 type)
     {
@@ -78,19 +106,4 @@ public class IssuesBAL
         {
         }
     }
-    public DataTable Issues_Numbers(Int64 mpId)
-    {
-        try
-        {
-            return ob.Issues_Numbers(mpId);
-        }
-        catch
-        {
-            throw;
-        }
-        finally
-        {
-        }
-    }
- 
  }

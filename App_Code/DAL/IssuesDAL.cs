@@ -11,13 +11,6 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data.SqlClient;
 
-/// <summary>
-/// Author:		<Ajay Singh >
-/// Email :      <meajaysingh@hotmail.com>
-/// Create date: <Create Date,5/10/2013> 
-/// </summary>
-
-
 
 public class IssuesDAL
 {
@@ -26,6 +19,60 @@ public class IssuesDAL
     SqlDataAdapter dap;
     string query;
 
+    public void updateReportAbuseIssue(issuesBO issuesBO)
+    {
+        try
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            query = "updateIssueReportedAsAbuse";
+            cmd = new SqlCommand(query, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@guid", issuesBO.guid);
+            cmd.Parameters.AddWithValue("@issueId", issuesBO.issueId);
+            cmd.Parameters.AddWithValue("@enable", issuesBO.enable);
+            cmd.Parameters.AddWithValue("@reportabuse", issuesBO.reportAbuseIssue);
+            cmd.ExecuteNonQuery();
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            if (con.State == ConnectionState.Open)
+                con.Close();
+        }
+    }
+    public DataTable fetchAbuseIssueReport()
+    {
+        try
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            query = "issuesReportedAsAbuse";
+            dap = new SqlDataAdapter(query, con);
+            dap.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataSet ds = new DataSet();
+            dap.Fill(ds, "temp");
+            dap.Dispose();
+            return ds.Tables["temp"];
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            if (con.State == ConnectionState.Open)
+                con.Close();
+        }
+
+    }
     public DataTable getIssues(Int64 NUMBER, Int16 TYPE)
     {
         try
@@ -199,33 +246,4 @@ public class IssuesDAL
         }
 
     }
-    public DataTable Issues_Numbers(Int64 mpId)
-    {
-        try
-        {
-
-            query = "ISSUES_NUMBER";
-            if (con.State == ConnectionState.Closed)
-            {
-                con.Open();
-            }
-            dap = new SqlDataAdapter(query, con);
-            dap.SelectCommand.CommandType = CommandType.StoredProcedure;
-            dap.SelectCommand.Parameters.AddWithValue("@mpId", mpId);
-            DataSet ds = new DataSet();
-            dap.Fill(ds, "temp");
-            dap.Dispose();
-            return ds.Tables["temp"];
-        }
-        catch
-        {
-            throw;
-        }
-        finally
-        {
-            if (con.State == ConnectionState.Open)
-                con.Close();
-        }
-    }
-
 }

@@ -7,11 +7,8 @@ using System.Data.SqlClient;
 using System.Configuration;
 
 /// <summary>
-/// Author:		<Ajay Singh >
-/// Email :      <meajaysingh@hotmail.com>
-/// Create date: <Create Date,5/10/2013> 
+/// Summary description for LikeDislikeDAL
 /// </summary>
-
 public class LikeDislikeDAL
 {
     SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["rateMyMPConnectionString"].ConnectionString);

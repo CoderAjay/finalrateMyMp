@@ -12,7 +12,7 @@ using System.Configuration;
         SqlCommand cmd;
         SqlDataAdapter dap;
         string query;
-        string[] str = new string[2];
+        string[] str = new string[3];
 
         public bool checkPasscode(userMasterBO userMasterBO)
         {
@@ -187,9 +187,13 @@ using System.Configuration;
                 returnEmail.Direction = ParameterDirection.Output;
                 SqlParameter returnGuid = cmd.Parameters.Add("@returnGuid", SqlDbType.BigInt);
                 returnGuid.Direction = ParameterDirection.Output;
+                SqlParameter returnFname = cmd.Parameters.Add("@returnFirstName", SqlDbType.NVarChar,50);
+                returnFname.Direction = ParameterDirection.Output;
                 cmd.ExecuteNonQuery();
                 str[0] = returnEmail.Value.ToString();
                 str[1] = returnGuid.Value.ToString();
+                str[2] = returnFname.Value.ToString();
+
                 return str;
             }
             catch

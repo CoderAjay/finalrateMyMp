@@ -4,6 +4,7 @@
 
 <!doctype html>
 <html>
+    
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta charset="utf-8">
@@ -22,11 +23,10 @@
           }, i[r].l = 1 * new Date(); a = s.createElement(o),
           m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
       })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
       ga('create', 'UA-44359262-1', 'venturepact.com');
       ga('send', 'pageview');
 
-</script>
+  </script>
 
       <script src="https://apis.google.com/js/client.js"></script>
       
@@ -334,21 +334,21 @@
                        <asp:RegularExpressionValidator ID="signinEmailValidation"  runat="server" ErrorMessage="Please enter valid email id" ControlToValidate="signinemail" ForeColor="#FF0066" SetFocusOnError="True" Display="Dynamic" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>  
                            </td>
                         <td><%--<input type="password"  placeholder="Password" class="input-large"/>--%>
-                            <asp:TextBox ID="signinPassword"  class="input-large" placeholder="password" runat="server" TextMode="Password" MaxLength="49" TabIndex="1"></asp:TextBox>
+                            <asp:TextBox ID="signinPassword"  class="input-large mg-left8" placeholder="password" runat="server" TextMode="Password" MaxLength="49" TabIndex="1"></asp:TextBox>
                         
                         </td>
                 	</tr>
              	   	<tr>
-                      	<td><asp:CheckBox ID="chkRememberMe" runat="server" TabIndex="3" />Remember me</td>
+                      	<td><asp:CheckBox ID="chkRememberMe" Class="chckpad-right4" runat="server" TabIndex="3" />Remember me</td>
                         <td>
                            <!-- <a  id="kkk" href="#forgot" data-toggle="modal" onclick="email()" class="color-white">Forgot Password?</a> -->
-                            <a  id="forgotlink" href="#" data-toggle="modal" onclick="email()" class="color-white">Forgot Password?</a>
+                            <a  id="forgotlink" href="#" data-toggle="modal" onclick="email()" class="color-white mg-left8">Forgot Password?</a>
                             <%--<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>--%>
                             <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true"></asp:ScriptManager>
                         </td>
                     </tr>
             	</table>
-            </span>
+            </span> 
 		</header>
 	</section>
 	<!-- Header Starts-->
@@ -443,7 +443,7 @@
                        	</td>
                     </tr>
                     <tr>
-                      	<td><div id="googlesignup" class="btn btn-danger mg-top10 btn-large padding-left78 padding-right78"><img src="images/google-btn.png" /><b>Sign Up With Google</b></div>
+                      	<td><div id="googlesignup" class="btn btn-danger mg-top10 btn-large padding-left75 padding-right86"><img src="images/google-btn.png" /><b>Sign Up With Google</b></div>
 
                       	</td>
                     </tr>

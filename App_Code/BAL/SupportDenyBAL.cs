@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-/// <summary>
-/// Author:		<Ajay Singh >
-/// Email :      <meajaysingh@hotmail.com>
-/// Create date: <Create Date,5/10/2013> 
-/// </summary>
 
+/// <summary>
+/// Summary description for SupportDenyBAL
+/// </summary>
 public class SupportDenyBAL
 {
     supportDenyDAL supportdenydal = new supportDenyDAL();
